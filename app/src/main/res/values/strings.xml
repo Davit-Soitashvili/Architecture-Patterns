@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ArchitecturePatterns</string>
+    <string name="viper">VIPER</string>
+    <string name="posts">Posts</string>
 </resources>
