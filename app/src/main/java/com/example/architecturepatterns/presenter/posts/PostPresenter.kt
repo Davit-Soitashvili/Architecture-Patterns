@@ -1,16 +1,16 @@
-package com.example.architecturepatterns.presenter
-import com.example.architecturepatterns.contract_interfaces.PostPresenterContract
-import com.example.architecturepatterns.contract_interfaces.PostsViewContract
+package com.example.architecturepatterns.presenter.posts
+
+import com.example.architecturepatterns.view.PostsViewContract
 import com.example.architecturepatterns.entity.Post
 import com.example.architecturepatterns.interactor.DataLoader
 import com.example.architecturepatterns.interactor.ResponseCallback
-import com.example.architecturepatterns.view.PostsActivity
+import javax.inject.Inject
 
-class PostPresenter :
+class PostPresenter @Inject constructor() :
     PostPresenterContract {
     private var postsContract: PostsViewContract? = null
 
-    override fun filteredPosts()  {
+    override fun filteredPosts() {
         DataLoader.getPosts(object : ResponseCallback {
             override fun onSuccess(response: MutableList<Post>) {
                 postsContract?.initPosts(getFilteredPosts(response))

@@ -1,4 +1,4 @@
-package com.example.architecturepatterns.contract_interfaces
+package com.example.architecturepatterns.view
 
 import com.example.architecturepatterns.entity.Post
 

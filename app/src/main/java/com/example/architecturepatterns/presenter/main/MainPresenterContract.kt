@@ -1,4 +1,4 @@
-package com.example.architecturepatterns.contract_interfaces
+package com.example.architecturepatterns.presenter.main
 
 import com.example.architecturepatterns.view.MainActivity
 
