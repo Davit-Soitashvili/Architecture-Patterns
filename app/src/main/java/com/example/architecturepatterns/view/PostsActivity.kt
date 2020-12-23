@@ -5,18 +5,22 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.architecturepatterns.R
+import com.example.architecturepatterns.di.DaggerAppComponent
 import com.example.architecturepatterns.model.Post
-import com.example.architecturepatterns.presenter.PostPresenter
+import com.example.architecturepatterns.presenter.PostPresenterContract
 import com.example.architecturepatterns.view.adapters.PostsAdapter
-import com.example.architecturepatterns.view.contract_interfaces.PostContract
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
-class PostsActivity : AppCompatActivity(), PostContract {
-    private lateinit var postPresenter: PostPresenter
+class PostsActivity : AppCompatActivity(),
+    PostActivityContract {
+    @Inject
+    lateinit var postPresenter: PostPresenterContract
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        postPresenter = PostPresenter()
+        DaggerAppComponent.create().inject(this)
         postPresenter.onAttach(this)
         postPresenter.filteredPosts()
     }
@@ -27,19 +31,11 @@ class PostsActivity : AppCompatActivity(), PostContract {
     }
 
     override fun initError(error: String) {
-        displayToastMessage(error)
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
     }
 
     override fun initPosts(posts: List<Post>) {
-        initPostsAdapter(posts)
-    }
-
-    private fun initPostsAdapter(posts: List<Post>) {
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
         postsRecyclerView.adapter = PostsAdapter(posts)
-    }
-
-    private fun displayToastMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
