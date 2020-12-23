@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,25 +19,27 @@
             android:id="@+id/userIdTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{post.userId}"
+            android:text="@{`User ID: ` + post.userId}"
             android:textColor="@android:color/black"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/idTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(post.id)}"
+            android:text="@{`ID: ` + String.valueOf(post.id)}"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{post.title}"
+            android:text="@{`Title:` + post.title}"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -45,7 +48,7 @@
             android:id="@+id/bodyTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{post.body}"
+            android:text="@{`Body:` + post.body}"
             android:textColor="@android:color/holo_green_light"
             android:textSize="17sp"
             android:textStyle="bold" />

@@ -20,20 +20,12 @@ class PostsActivity : AppCompatActivity() {
         val postViewModel = ViewModelProvider(this)[PostsViewModel::class.java]
         postViewModel.makePostsApiCall()
         postViewModel.posts.observe(this, Observer {
-            initPostsAdapter(it)
+            postsRecyclerView.layoutManager = LinearLayoutManager(this)
+            postsRecyclerView.adapter = PostsAdapter(it)
         })
 
         postViewModel.error.observe(this, Observer {
-            displayToastMessage(it)
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
-    }
-
-    private fun initPostsAdapter(posts: List<Post>) {
-        postsRecyclerView.layoutManager = LinearLayoutManager(this)
-        postsRecyclerView.adapter = PostsAdapter(posts)
-    }
-
-    private fun displayToastMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
