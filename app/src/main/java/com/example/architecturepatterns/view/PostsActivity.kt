@@ -23,30 +23,22 @@ class PostsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_posts)
         observeResponse()
-        postsViewModel.takeAction(RequestAction.GetPosts)
+        postsViewModel.handlePostIntent(PostRequestIntent.GetPosts)
     }
 
     private fun observeResponse() {
         val responseObserver = Observer<ResponseState> {
             when (it) {
                 is ResponseState.Posts -> {
-                    initPostsAdapter(it.posts)
+                    postsRecyclerView.layoutManager = LinearLayoutManager(this)
+                    postsRecyclerView.adapter = PostsAdapter(it.posts)
                 }
                 is ResponseState.Error -> {
-                    displayToastMessage(it.message)
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
         postsViewModel.responseState.observe(this, responseObserver)
         postsViewModel.responseEffect.observe(this, responseObserver)
-    }
-
-    private fun initPostsAdapter(posts: List<Post>) {
-        postsRecyclerView.layoutManager = LinearLayoutManager(this)
-        postsRecyclerView.adapter = PostsAdapter(posts)
-    }
-
-    private fun displayToastMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

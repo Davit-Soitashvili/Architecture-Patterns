@@ -1,13 +1,12 @@
 package com.example.architecturepatterns.models.view_models
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.architecturepatterns.models.DataLoader
 import com.example.architecturepatterns.models.Post
 import com.example.architecturepatterns.models.ResponseCallback
-import com.example.architecturepatterns.view.RequestAction
 import com.example.architecturepatterns.models.ResponseState
+import com.example.architecturepatterns.view.PostRequestIntent
 
 class PostsViewModel : ViewModel() {
     private val _responseState = MutableLiveData<ResponseState>()
@@ -15,9 +14,9 @@ class PostsViewModel : ViewModel() {
     val responseState: LiveData<ResponseState> = _responseState
     val responseEffect: LiveData<ResponseState.Effect> = _responseEffect
 
-    fun takeAction(action: RequestAction) {
-        when (action) {
-            is RequestAction.GetPosts -> {
+    fun handlePostIntent(intent: PostRequestIntent) {
+        when (intent) {
+            is PostRequestIntent.GetPosts -> {
                 makePostsApiCall()
             }
         }
