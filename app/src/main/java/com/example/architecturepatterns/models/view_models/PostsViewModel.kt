@@ -7,7 +7,7 @@ import com.example.architecturepatterns.models.DataLoader
 import com.example.architecturepatterns.models.Post
 import com.example.architecturepatterns.models.ResponseCallback
 import com.example.architecturepatterns.view.RequestAction
-import com.example.architecturepatterns.view.ResponseState
+import com.example.architecturepatterns.models.ResponseState
 
 class PostsViewModel : ViewModel() {
     private val _responseState = MutableLiveData<ResponseState>()

@@ -1,6 +1,4 @@
-package com.example.architecturepatterns.view
-
-import com.example.architecturepatterns.models.Post
+package com.example.architecturepatterns.models
 
 sealed class ResponseState {
     data class Posts(val posts: List<Post>) : ResponseState()

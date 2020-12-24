@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.architecturepatterns.R
 import com.example.architecturepatterns.models.Post
+import com.example.architecturepatterns.models.ResponseState
 import com.example.architecturepatterns.models.view_models.PostsViewModel
 import com.example.architecturepatterns.view.adapters.PostsAdapter
 import kotlinx.android.synthetic.main.activity_posts.*
