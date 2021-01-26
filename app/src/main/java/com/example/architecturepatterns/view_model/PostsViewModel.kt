@@ -1,13 +1,14 @@
 package com.example.architecturepatterns.view_model
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.architecturepatterns.model.Post
 import com.example.architecturepatterns.repository.PostsRepository
-import com.example.architecturepatterns.repository.PostsRepositoryImpl
+import javax.inject.Inject
 
-class PostsViewModel(private val postsRepository: PostsRepository = PostsRepositoryImpl.getRepositoryInstance()) :
+class PostsViewModel @Inject constructor(val postsRepository: PostsRepository) :
     ViewModel() {
     private val _posts = MutableLiveData<List<Post>>()
     private val _error = MutableLiveData<String>()
